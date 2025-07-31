@@ -1,0 +1,11 @@
+.RightSide {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.navbar-brand {
+    cursor: pointer;
+}

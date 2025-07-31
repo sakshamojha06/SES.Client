@@ -1,0 +1,57 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiStudentService, Student } from '../../Services/api.student.service';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-edit-student',
+  imports: [FormsModule],
+  templateUrl: './edit-student.html',
+  styleUrl: './edit-student.css'
+})
+export class EditStudent {
+  mode: string = 'New';
+  studentId: number = 0;
+  student: Student = {
+    id: 0, 
+    name: '', 
+    email: '',
+    dob: new Date(),
+    gpa: 0
+  };
+  service: any;
+
+  constructor(
+    private apiService: ApiStudentService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if(idParam) {
+        this.studentId = +idParam;
+        this.mode = 'Edit';
+        this.loadProduct();
+      }
+    });
+  }
+
+  loadProduct() {
+    this.apiService.getStudentById(this.studentId).subscribe(student => {
+      this.student = student;
+    })
+  }
+
+  Save() {
+    if (this.student.id === 0) {
+      this.apiService.addStudent(this.student).subscribe(s => {
+        alert(`Student ${s.name} added successfully!`);
+      });
+    } else {
+      this.apiService.updateStudent(this.student.id, this.student).subscribe(msg => {
+        alert(msg);
+    });
+  }
+}
+}
