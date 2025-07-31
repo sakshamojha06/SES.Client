@@ -45,6 +45,10 @@ export const routes: Routes = [
         component: EditEnrollment
     },
     {
+        path: 'addEnrollment',
+        component: EditEnrollment
+    },
+    {
         path: '**',
         component: Home
     }
