@@ -5,6 +5,7 @@ import { Courses } from './Course/courses/courses';
 import { Enrollments } from './Enrollment/enrollments/enrollments';
 import { EditStudent } from './Student/edit-student/edit-student';
 import { EditCourse } from './Course/edit-course/edit-course';
+import { EditEnrollment } from './Enrollment/edit-enrollment/edit-enrollment';
 
 export const routes: Routes = [
     {
@@ -38,6 +39,10 @@ export const routes: Routes = [
     {
         path: 'editCourse/:id',
         component: EditCourse
+    },
+    {
+        path: 'editEnrollment/:id',
+        component: EditEnrollment
     },
     {
         path: '**',

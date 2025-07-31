@@ -1,30 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ApiCourseService, Course } from '../../Services/api.course.service';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit-course',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './edit-course.html',
   styleUrl: './edit-course.css',
 })
-export class EditCourse {
+export class EditCourse implements OnInit {
   mode: string = 'New';
   courseId: number = 0;
-  course: Course = {
-    id: 0,
-    name: '',
-    credits: 0,
-  };
-  service: any;
+  courseForm!: FormGroup;
+
+  
 
   constructor(
+    private fb: FormBuilder,
     private apiCourseService: ApiCourseService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.courseForm = this.fb.group({
+      id: [0],
+      name: [''],
+      credits: [0],
+    });
+
     this.route.paramMap.subscribe((params) => {
       const idParam = params.get('id');
       if (idParam) {
@@ -36,20 +42,22 @@ export class EditCourse {
   }
 
   loadCourse() {
-    this.apiCourseService.getCourseById(this.courseId).subscribe((course) => {
-      this.course = course;
+    this.apiCourseService.getCourseById(this.courseId).subscribe((course: Course) => {
+      this.courseForm.patchValue(course);
     });
   }
 
   Save() {
-    if (this.course.id === 0) {
-      this.apiCourseService.addCourse(this.course).subscribe((c) => {
+    const course: Course = this.courseForm.value;
+
+    if (course.id === 0) {
+      this.apiCourseService.addCourse(course).subscribe((c) => {
         alert(`Course ${c.name} added successfully!`);
       });
     } else {
-      this.apiCourseService.updateCourse(this.course.id, this.course).subscribe((msg) => {
-          alert(msg);
-        });
+      this.apiCourseService.updateCourse(course.id, course).subscribe((msg) => {
+        alert(msg);
+      });
     }
   }
 }
