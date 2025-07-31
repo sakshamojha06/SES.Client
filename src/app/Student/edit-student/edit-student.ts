@@ -22,7 +22,7 @@ export class EditStudent {
   service: any;
 
   constructor(
-    private apiService: ApiStudentService,
+    private apiStudentService: ApiStudentService,
     private route: ActivatedRoute
   ) {}
 
@@ -32,24 +32,24 @@ export class EditStudent {
       if(idParam) {
         this.studentId = +idParam;
         this.mode = 'Edit';
-        this.loadProduct();
+        this.loadStudent();
       }
     });
   }
 
-  loadProduct() {
-    this.apiService.getStudentById(this.studentId).subscribe(student => {
+  loadStudent() {
+    this.apiStudentService.getStudentById(this.studentId).subscribe(student => {
       this.student = student;
     })
   }
 
   Save() {
     if (this.student.id === 0) {
-      this.apiService.addStudent(this.student).subscribe(s => {
+      this.apiStudentService.addStudent(this.student).subscribe(s => {
         alert(`Student ${s.name} added successfully!`);
       });
     } else {
-      this.apiService.updateStudent(this.student.id, this.student).subscribe(msg => {
+      this.apiStudentService.updateStudent(this.student.id, this.student).subscribe(msg => {
         alert(msg);
     });
   }

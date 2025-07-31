@@ -1,0 +1,19 @@
+<div class="container mt-5">
+    <div class="w-50">
+        <h5 class="text-center mb-4">{{mode}} Course</h5>
+        <form>
+            <div class="mb-3">
+`                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" [(ngModel)]="course.name" id="name" name="name" placeholder="Enter your name">
+            </div>
+
+            <div class="mb-3">
+                <label for="credit" class="form-label">Credit</label>
+                <input type="text" id="credit" name="credit" [(ngModel)]="course.credits" class="form-control" placeholder="Enter your credit">
+            </div>
+            <div class="button">
+                <button type="button" class="btn btn-outline-primary" (click)="Save()">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

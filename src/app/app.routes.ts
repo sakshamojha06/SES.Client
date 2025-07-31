@@ -4,6 +4,7 @@ import { Students } from './Student/students/students';
 import { Courses } from './Course/courses/courses';
 import { Enrollments } from './Enrollment/enrollments/enrollments';
 import { EditStudent } from './Student/edit-student/edit-student';
+import { EditCourse } from './Course/edit-course/edit-course';
 
 export const routes: Routes = [
     {
@@ -29,5 +30,17 @@ export const routes: Routes = [
     {
         path: 'edit/:id',
         component: EditStudent
+    },
+    {
+        path: 'addCourse',
+        component: EditCourse
+    },
+    {
+        path: 'editCourse/:id',
+        component: EditCourse
+    },
+    {
+        path: '**',
+        component: Home
     }
 ];

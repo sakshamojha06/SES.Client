@@ -1,0 +1,49 @@
+table {
+    border: 1px solid #dee2e6;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    vertical-align: middle !important;
+  }
+  
+  .table td, .table th {
+    border: 1px solid #dee2e6 !important;
+  }
+  
+  td .btn {
+    padding: 2px 8px;
+    font-size: 0.8rem;
+  }
+
+  .title{
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+    padding: 20px;
+  }
+
+  .firstColumn {
+    width: 15%;
+  }
+
+  .emptyCourse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    font-size: 40px;
+    color: #6c757d;
+  }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
