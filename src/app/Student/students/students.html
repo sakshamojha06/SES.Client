@@ -1,38 +1,53 @@
 <div class="container mt-4">
-    <div class="header-container">
-        <div class="title mb-3">Total Students</div>
-        <button class="btn btn-sm btn-success ms-5" (click)="AddStudent()">Add</button>
-    </div>
-    <div *ngIf="students.length == 0" class="emptyStudent">
-        No Student Found
-    </div>
-    <div *ngIf="students.length > 0" class="table-responsive">
-        <table class="table table-bordered text-center align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>DOB</th>
-                    <th>GPA</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let student of students">
-                    <td class="firstColumn">
-                        <div class="d-flex flex-column align-items-start">
-                            <div class="mb-1">
-                                <button class="btn btn-sm btn-primary me-3" (click)="EditStudent(student.id)">Edit</button>
-                                <button class="btn btn-sm btn-danger" (click)="DeleteStudent(student.id)">Delete</button>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.email }}</td>
-                    <td>{{ student.dob }}</td>
-                    <td>{{ student.gpa }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="header-container">
+    <div class="title mb-3">Total Students</div>
+    <button class="btn btn-sm btn-success ms-5" (click)="AddStudent()">
+      Add
+    </button>
+  </div>
+  @if(students.length == 0) {
+  <div class="emptyStudent">No Student Found</div>
+  } @else {
+  <div class="table-responsive">
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-light">
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>DOB</th>
+          <th>GPA</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(student of students; track student.id) {
+        <tr>
+          <td class="firstColumn">
+            <div class="d-flex flex-column align-items-start">
+              <div class="mb-1">
+                <button
+                  class="btn btn-sm btn-primary me-3"
+                  (click)="EditStudent(student.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-danger"
+                  (click)="DeleteStudent(student.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.dob }}</td>
+          <td>{{ student.gpa }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
 </div>

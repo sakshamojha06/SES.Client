@@ -1,4 +1,3 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { StudentService, Student } from '../../services/student.service';
 import { Router } from '@angular/router';
@@ -6,7 +5,6 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-students',
-  imports: [NgIf, NgFor],
   templateUrl: './students.html',
   styleUrl: './students.css',
 })
