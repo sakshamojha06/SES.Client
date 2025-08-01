@@ -16,7 +16,7 @@ export class PartialCourse {
 @Injectable({
   providedIn: 'root',
 })
-export class ApiCourseService {
+export class CourseService {
   private apiUrl = 'http://localhost:5160/api/courses';
   private http = inject(HttpClient);
 

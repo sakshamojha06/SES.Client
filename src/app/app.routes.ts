@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { Home } from './home/home';
-import { Students } from './Student/students/students';
-import { Courses } from './Course/courses/courses';
-import { Enrollments } from './Enrollment/enrollments/enrollments';
-import { EditStudent } from './Student/edit-student/edit-student';
-import { EditCourse } from './Course/edit-course/edit-course';
-import { EditEnrollment } from './Enrollment/edit-enrollment/edit-enrollment';
+import { Students } from './student/students/students';
+import { Courses } from './course/courses/courses';
+import { Enrollments } from './enrollment/enrollments/enrollments';
+import { EditStudent } from './student/edit-student/edit-student';
+import { EditCourse } from './course/edit-course/edit-course';
+import { EditEnrollment } from './enrollment/edit-enrollment/edit-enrollment';
 
 export const routes: Routes = [
     {
@@ -50,6 +50,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        component: Home
+        redirectTo: ''
     }
 ];

@@ -12,7 +12,7 @@ export class Enrollment {
 @Injectable({
   providedIn: 'root',
 })
-export class ApiEnrollmentService {
+export class EnrollmentService {
   private apiUrl = 'http://localhost:5160/api/enrollments';
   private http = inject(HttpClient);
 

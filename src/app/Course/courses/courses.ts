@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { ApiCourseService, Course } from '../../Services/api.course.service';
+import { CourseService, Course } from '../../services/course.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
@@ -8,12 +8,12 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'app-courses',
   imports: [NgIf, NgFor],
   templateUrl: './courses.html',
-  styleUrl: './courses.css'
+  styleUrl: './courses.css',
 })
 export class Courses implements OnInit, OnDestroy {
   courses: Course[] = [];
 
-  private apiService = inject(ApiCourseService);
+  private apiService = inject(CourseService);
   private router = inject(Router);
   private subscription = new Subscription();
 
@@ -23,7 +23,7 @@ export class Courses implements OnInit, OnDestroy {
 
   public GetCourses(): void {
     this.subscription.add(
-      this.apiService.getCourses().subscribe(ps => {
+      this.apiService.getCourses().subscribe((ps) => {
         this.courses = ps;
       })
     );
@@ -34,16 +34,16 @@ export class Courses implements OnInit, OnDestroy {
   }
 
   public DeleteCourse(id: number): void {
-    if(!confirm('Are you sure you want to delete this course?')) {
+    if (!confirm('Are you sure you want to delete this course?')) {
       return;
-    } 
+    }
 
     this.subscription.add(
-      this.apiService.deleteCourse(id).subscribe(msg => {
+      this.apiService.deleteCourse(id).subscribe((msg) => {
         alert(msg);
         this.GetCourses();
       })
-    )
+    );
   }
 
   public AddCourse(): void {

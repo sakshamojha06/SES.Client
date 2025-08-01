@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import {
-  ApiEnrollmentService,
+  EnrollmentService,
   Enrollment,
-} from '../../Services/api.enrollment.service';
+} from '../../services/enrollment.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ApiStudentService, PartialStudent } from '../../Services/api.student.service';
-import { ApiCourseService, PartialCourse } from '../../Services/api.course.service';
+import { StudentService, PartialStudent } from '../../services/student.service';
+import { CourseService, PartialCourse } from '../../services/course.service';
 
 @Component({
   selector: 'app-enrollments',
@@ -18,9 +18,9 @@ export class Enrollments {
   private partialStudents: PartialStudent[] = [];
   private partialCourses: PartialCourse[] = [];
 
-  private apiService = inject(ApiEnrollmentService);
-  private studentService = inject(ApiStudentService);
-  private courseService = inject(ApiCourseService);
+  private enrollmentService = inject(EnrollmentService);
+  private studentService = inject(StudentService);
+  private courseService = inject(CourseService);
   private router = inject(Router);
   private subscription = new Subscription();
 
@@ -32,7 +32,7 @@ export class Enrollments {
 
   private GetEnrollments(): void {
     this.subscription.add(
-      this.apiService.getEnrollments().subscribe((ps) => {
+      this.enrollmentService.getEnrollments().subscribe((ps) => {
         this.enrollments = ps;
       })
     );
@@ -55,11 +55,11 @@ export class Enrollments {
   }
 
   GetStudentName(id: number): string | undefined {
-      return this.partialStudents.find(s => s.id === id)?.name;
+    return this.partialStudents.find((s) => s.id === id)?.name;
   }
 
   GetCourseName(id: number): string | undefined {
-      return this.partialCourses.find(c => c.id === id)?.name;
+    return this.partialCourses.find((c) => c.id === id)?.name;
   }
 
   public EditEnrollment(id: number): void {
@@ -72,7 +72,7 @@ export class Enrollments {
     }
 
     this.subscription.add(
-      this.apiService.deleteEnrollment(id).subscribe((msg) => {
+      this.enrollmentService.deleteEnrollment(id).subscribe((msg) => {
         alert(msg);
         this.GetEnrollments();
       })

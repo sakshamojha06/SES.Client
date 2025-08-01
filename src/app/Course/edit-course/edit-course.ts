@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ApiCourseService, Course } from '../../Services/api.course.service';
+import { CourseService, Course } from '../../services/course.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,11 +16,9 @@ export class EditCourse implements OnInit {
   courseId: number = 0;
   courseForm!: FormGroup;
 
-  
-
   constructor(
     private fb: FormBuilder,
-    private apiCourseService: ApiCourseService,
+    private apiCourseService: CourseService,
     private route: ActivatedRoute
   ) {}
 
@@ -42,9 +40,11 @@ export class EditCourse implements OnInit {
   }
 
   loadCourse() {
-    this.apiCourseService.getCourseById(this.courseId).subscribe((course: Course) => {
-      this.courseForm.patchValue(course);
-    });
+    this.apiCourseService
+      .getCourseById(this.courseId)
+      .subscribe((course: Course) => {
+        this.courseForm.patchValue(course);
+      });
   }
 
   Save() {
