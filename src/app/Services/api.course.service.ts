@@ -8,6 +8,11 @@ export class Course {
   credits: number = 0;
 }
 
+export class PartialCourse {
+  id?: number;
+  name?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +22,10 @@ export class ApiCourseService {
 
   getCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(this.apiUrl);
+  }
+
+  getPartialCourses(): Observable<PartialCourse[]> {
+    return this.http.get<PartialCourse[]>(`${this.apiUrl}/partial`);
   }
 
   getCourseById(id: number): Observable<Course> {

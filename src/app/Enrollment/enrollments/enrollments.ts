@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgFor, NgIf } from '@angular/common';
 import { ApiStudentService, PartialStudent } from '../../Services/api.student.service';
+import { ApiCourseService, PartialCourse } from '../../Services/api.course.service';
 
 @Component({
   selector: 'app-enrollments',
@@ -17,15 +18,18 @@ import { ApiStudentService, PartialStudent } from '../../Services/api.student.se
 export class Enrollments {
   enrollments: Enrollment[] = [];
   private partialStudents: PartialStudent[] = [];
+  private partialCourses: PartialCourse[] = [];
 
   private apiService = inject(ApiEnrollmentService);
   private studentService = inject(ApiStudentService);
+  private courseService = inject(ApiCourseService);
   private router = inject(Router);
   private subscription = new Subscription();
 
   ngOnInit(): void {
     this.GetEnrollments();
     this.GetPartialStudents();
+    this.GetPartialCourses();
   }
 
   private GetEnrollments(): void {
@@ -44,8 +48,20 @@ export class Enrollments {
     );
   }
 
+  private GetPartialCourses(): void {
+    this.subscription.add(
+      this.courseService.getPartialCourses().subscribe((cs) => {
+        this.partialCourses = cs;
+      })
+    );
+  }
+
   GetStudentName(id: number): string | undefined {
       return this.partialStudents.find(s => s.id === id)?.name;
+  }
+
+  GetCourseName(id: number): string | undefined {
+      return this.partialCourses.find(c => c.id === id)?.name;
   }
 
   public EditEnrollment(id: number): void {
