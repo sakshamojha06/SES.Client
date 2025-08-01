@@ -1,35 +1,49 @@
 <div class="container mt-4">
-    <div class="header-container">
-        <div class="title mb-3">Total Courses</div>
-        <button class="btn btn-sm btn-success ms-5" (click)="AddCourse()">Add</button>
-    </div>
-    <div *ngIf="courses.length == 0" class="emptyCourse">
-        No Course Found
-    </div>
-
-    <div *ngIf="courses.length > 0" class="table-responsive">
-        <table class="table table-bordered text-center align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Credit</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let course of courses">
-                    <td class="firstColumn">
-                        <div class="d-flex flex-column align-items-start">
-                            <div class="mb-1">
-                                <button class="btn btn-sm btn-primary me-3" (click)="EditCourse(course.id)">Edit</button>
-                                <button class="btn btn-sm btn-danger" (click)="DeleteCourse(course.id)">Delete</button>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{ course.name }}</td>
-                    <td>{{ course.credits }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="header-container">
+    <div class="title mb-3">Total Courses</div>
+    <button class="btn btn-sm btn-success ms-5" (click)="AddCourse()">
+      Add
+    </button>
+  </div>
+  @if(courses.length == 0) {
+  <div class="emptyCourse">No Course Found</div>
+  } @else {
+  <div class="table-responsive">
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-light">
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Credit</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(course of courses; track course.id) {
+        <tr>
+          <td class="firstColumn">
+            <div class="d-flex flex-column align-items-start">
+              <div class="mb-1">
+                <button
+                  class="btn btn-sm btn-primary me-3"
+                  (click)="EditCourse(course.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-danger"
+                  (click)="DeleteCourse(course.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </td>
+          <td>{{ course.name }}</td>
+          <td>{{ course.credits }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
 </div>

@@ -2,11 +2,9 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CourseService, Course } from '../../services/course.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-courses',
-  imports: [NgIf, NgFor],
   templateUrl: './courses.html',
   styleUrl: './courses.css',
 })
