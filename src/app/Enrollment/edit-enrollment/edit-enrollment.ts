@@ -78,7 +78,7 @@ export class EditEnrollment {
         .updateEnrollment(this.enrollment.id, this.enrollment)
         .subscribe((msg) => {
           alert(msg);
-          this.router.navigate(['/students']);
+          this.router.navigate(['/enrollments']);
         });
     }
   }

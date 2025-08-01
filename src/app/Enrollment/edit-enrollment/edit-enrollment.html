@@ -9,9 +9,9 @@
             name="student"
             class="form-control"
             [(ngModel)]="enrollment.studentId">
-            <option *ngFor="let student of partialStudents" [value]="student.id">
-              {{ student.name }}
-            </option>
+            @for(student of partialStudents; track student.id) {
+            <option [value]="student.id">{{ student.name }}</option>
+        }
           </select>
         </div>
   
@@ -22,9 +22,9 @@
             name="course"
             class="form-control"
             [(ngModel)]="enrollment.courseId">
-            <option *ngFor="let course of partialCourses" [value]="course.id">
-              {{ course.name }}
-            </option>
+            @for(course of partialCourses; track course.id) {
+            <option [value]="course.id">{{ course.name }}</option>
+        }
           </select>
         </div>
   
