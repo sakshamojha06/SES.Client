@@ -10,6 +10,11 @@ export class Student {
   gpa: number = 0.0;
 }
 
+export class PartialStudent {
+  id?: number;
+  name?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +24,10 @@ export class ApiStudentService {
 
     getStudents(): Observable<Student[]> {
       return this.http.get<Student[]>(this.apiUrl);
+    }
+
+    getPartialStudents(): Observable<PartialStudent[]> {
+      return this.http.get<PartialStudent[]>(`${this.apiUrl}/partial`);
     }
 
     getStudentById(id: number): Observable<Student> {
