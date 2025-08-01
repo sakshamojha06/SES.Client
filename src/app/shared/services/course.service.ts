@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PartialCourse } from '../models/partial-course';
 import { Course } from '../models/course';
+import { PartialCourse } from '../models/partial-course';
 
 @Injectable({
   providedIn: 'root',
