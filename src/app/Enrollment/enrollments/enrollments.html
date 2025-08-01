@@ -1,36 +1,52 @@
 <div class="container mt-4">
-    <div class="header-container">
-        <div class="title mb-3">Total Enrollments</div>
-        <button class="btn btn-sm btn-success ms-5" (click)="AddEnrollment()">Add</button>
-    </div>
-    <div *ngIf="enrollments.length == 0" class="emptyEnrollment">
-        No Student Found
-    </div>
-    <div *ngIf="enrollments.length > 0" class="table-responsive">
-        <table class="table table-bordered text-center align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th></th>
-                    <th>Student</th>
-                    <th>Course</th>
-                    <th>Grade</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let enrollment of enrollments">
-                    <td class="firstColumn">
-                        <div class="d-flex flex-column align-items-start">
-                            <div class="mb-1">
-                                <button class="btn btn-sm btn-primary me-3" (click)="EditEnrollment(enrollment.id)">Edit</button>
-                                <button class="btn btn-sm btn-danger" (click)="DeleteEnrollment(enrollment.id)">Delete</button>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{ GetStudentName(enrollment.studentId) }}</td>
-                    <td>{{ GetCourseName(enrollment.courseId) }}</td>
-                    <td>{{ enrollment.grade }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="header-container">
+    <div class="title mb-3">Total Enrollments</div>
+    <button class="btn btn-sm btn-success ms-5" (click)="AddEnrollment()">
+      Add
+    </button>
+  </div>
+  @if(enrollments.length == 0) {
+    <div class="emptyEnrollment">No Student Found</div>
+  } 
+  @else {
+  <div class="table-responsive">
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-light">
+        <tr>
+          <th></th>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(enrollment of enrollments; track enrollment.id){
+        <tr>
+          <td class="firstColumn">
+            <div class="d-flex flex-column align-items-start">
+              <div class="mb-1">
+                <button
+                  class="btn btn-sm btn-primary me-3"
+                  (click)="EditEnrollment(enrollment.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-danger"
+                  (click)="DeleteEnrollment(enrollment.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </td>
+          <td>{{ GetStudentName(enrollment.studentId) }}</td>
+          <td>{{ GetCourseName(enrollment.courseId) }}</td>
+          <td>{{ enrollment.grade }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
 </div>

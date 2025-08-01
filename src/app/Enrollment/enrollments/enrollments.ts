@@ -5,13 +5,11 @@ import {
 } from '../../Services/api.enrollment.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { NgFor, NgIf } from '@angular/common';
 import { ApiStudentService, PartialStudent } from '../../Services/api.student.service';
 import { ApiCourseService, PartialCourse } from '../../Services/api.course.service';
 
 @Component({
   selector: 'app-enrollments',
-  imports: [NgIf, NgFor],
   templateUrl: './enrollments.html',
   styleUrl: './enrollments.css',
 })
