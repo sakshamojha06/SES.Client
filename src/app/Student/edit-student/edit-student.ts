@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiStudentService, Student } from '../../Services/api.student.service';
 import { FormsModule } from '@angular/forms';
 
@@ -19,11 +19,11 @@ export class EditStudent {
     dob: new Date(),
     gpa: 0
   };
-  service: any;
 
   constructor(
     private apiStudentService: ApiStudentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +51,7 @@ export class EditStudent {
     } else {
       this.apiStudentService.updateStudent(this.student.id, this.student).subscribe(msg => {
         alert(msg);
+        this.router.navigate(['/students']);
     });
   }
 }
