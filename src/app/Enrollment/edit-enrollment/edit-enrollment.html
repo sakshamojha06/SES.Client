@@ -1,1 +1,53 @@
-<p>edit-enrollment works!</p>
+<div class="container mt-5">
+    <div class="w-50">
+      <h5 class="text-center mb-4">{{ mode }} Enrollment</h5>
+      <form>
+        <div class="mb-3">
+          <label for="student" class="form-label">Student</label>
+          <select
+            id="student"
+            name="student"
+            class="form-control"
+            [(ngModel)]="enrollment.studentId">
+            <option *ngFor="let student of partialStudents" [value]="student.id">
+              {{ student.name }}
+            </option>
+          </select>
+        </div>
+  
+        <div class="mb-3">
+          <label for="course" class="form-label">Course</label>
+          <select
+            id="course"
+            name="course"
+            class="form-control"
+            [(ngModel)]="enrollment.courseId">
+            <option *ngFor="let course of partialCourses" [value]="course.id">
+              {{ course.name }}
+            </option>
+          </select>
+        </div>
+  
+        <div class="mb-3">
+          <label for="grade" class="form-label">Grade</label>
+          <input
+            type="number"
+            id="grade"
+            name="grade"
+            [(ngModel)]="enrollment.grade"
+            class="form-control"
+            placeholder="Enter your grade" />
+        </div>
+  
+        <div class="button">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="Save()">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
