@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { StudentService, Student } from '../../services/student.service';
+import { StudentService } from '../../shared/services/student.service';
+import { Student } from '../../shared/models/student';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

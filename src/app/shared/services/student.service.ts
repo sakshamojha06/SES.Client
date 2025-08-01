@@ -1,19 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export class Student {
-  id: number = 0;
-  name: string = '';
-  email: string = '';
-  dob: Date = new Date();
-  gpa: number = 0.0;
-}
-
-export class PartialStudent {
-  id?: number;
-  name?: string;
-}
+import { PartialStudent } from '../models/partial-student';
+import { Student } from '../models/student';
 
 @Injectable({
   providedIn: 'root',

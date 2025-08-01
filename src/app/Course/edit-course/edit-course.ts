@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CourseService, Course } from '../../services/course.service';
+import { CourseService } from '../../shared/services/course.service';
+import { Course } from '../../shared/models/course';
 import { CommonModule } from '@angular/common';
 
 @Component({

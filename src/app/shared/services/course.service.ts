@@ -1,17 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export class Course {
-  id: number = 0;
-  name: string = '';
-  credits: number = 0;
-}
-
-export class PartialCourse {
-  id?: number;
-  name?: string;
-}
+import { PartialCourse } from '../models/partial-course';
+import { Course } from '../models/course';
 
 @Injectable({
   providedIn: 'root',

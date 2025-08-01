@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import {
-  EnrollmentService,
-  Enrollment,
-} from '../../services/enrollment.service';
+import { EnrollmentService } from '../../shared/services/enrollment.service';
+import { Enrollment } from '../../shared/models/enrollment';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { StudentService, PartialStudent } from '../../services/student.service';
-import { CourseService, PartialCourse } from '../../services/course.service';
+import { StudentService } from '../../shared/services/student.service';
+import { PartialStudent } from '../../shared/models/partial-student';
+import { CourseService } from '../../shared/services/course.service';
+import { PartialCourse } from '../../shared/models/partial-course';
 
 @Component({
   selector: 'app-enrollments',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentService, Student } from '../../services/student.service';
+import { StudentService } from '../../shared/services/student.service';
+import { Student } from '../../shared/models/student';
 import { FormsModule } from '@angular/forms';
 
 @Component({

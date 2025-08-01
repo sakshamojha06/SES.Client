@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { CourseService, Course } from '../../services/course.service';
+import { CourseService } from '../../shared/services/course.service';
+import { Course } from '../../shared/models/course';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
