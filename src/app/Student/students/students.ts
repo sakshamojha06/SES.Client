@@ -1,11 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { StudentService } from '../../shared/services/student.service';
-import { Student } from '../../shared/models/student';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Student } from '../../shared/models/student';
+import { StudentService } from '../../shared/services/student.service';
 
 @Component({
   selector: 'app-students',
+  imports: [DatePipe],
   templateUrl: './students.html',
   styleUrl: './students.css',
 })

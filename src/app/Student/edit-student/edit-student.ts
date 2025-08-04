@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../../shared/services/student.service';
 import { Student } from '../../shared/models/student';
 import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatHint } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-edit-student',
-  imports: [FormsModule],
+  imports: [FormsModule, MatDatepickerModule, MatHint],
   templateUrl: './edit-student.html',
   styleUrl: './edit-student.css',
 })
