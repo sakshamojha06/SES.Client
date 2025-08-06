@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../../shared/services/student.service';
-import { Student } from '../../shared/models/student';
+import { Student, StudentDto } from '../../shared/models/student';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatHint } from '@angular/material/form-field';
@@ -15,13 +15,7 @@ import { MatHint } from '@angular/material/form-field';
 export class EditStudent {
   mode: string = 'New';
   studentId: number = 0;
-  student: Student = {
-    id: 0,
-    name: '',
-    email: '',
-    dob: new Date(),
-    gpa: 0,
-  };
+  student: Student = new Student();
 
   constructor(
     private apiStudentService: StudentService,
@@ -48,18 +42,32 @@ export class EditStudent {
       });
   }
 
-  Save() {
+  save() {
     if (this.student.id === 0) {
       this.apiStudentService.addStudent(this.student).subscribe((s) => {
         alert(`Student ${s.name} added successfully!`);
       });
     } else {
+      const sDto: StudentDto = {
+        ...this.student, 
+        dob: this.convertDateToString(this.student.dob)
+      };
+
       this.apiStudentService
-        .updateStudent(this.student.id, this.student)
+        .updateStudent(this.student.id, sDto)
         .subscribe((msg) => {
           alert(msg);
           this.router.navigate(['/students']);
         });
     }
+  }
+
+  private convertDateToString(date: Date): string {
+    if(typeof date === 'string') return date;
+
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 }

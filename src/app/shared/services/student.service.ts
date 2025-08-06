@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PartialStudent } from '../models/partial-student';
-import { Student } from '../models/student';
+import { Student, StudentDto } from '../models/student';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,7 @@ export class StudentService {
     return this.http.post<Student>(this.apiUrl, student);
   }
 
-  updateStudent(id: number, student: Student): Observable<string> {
+  updateStudent(id: number, student: StudentDto): Observable<string> {
     return this.http.put(`${this.apiUrl}/${id}`, student, {
       responseType: 'text',
     });
